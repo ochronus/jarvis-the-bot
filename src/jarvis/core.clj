@@ -3,13 +3,14 @@
 
 (defn fetch-url [address]
   (with-open [stream (.openStream (java.net.URL. address))]
-    (let  [buf (java.io.BufferedReader. 
+    (let  [buf (java.io.BufferedReader.
                 (java.io.InputStreamReader. stream))]
       (apply str (line-seq buf)))))
 
 (defn handle-message [message]
   (let [body (:body message)
         from-user (:from-name message)]
+    (println "ffff")
     (if (clojure.string/blank? body) (fetch-url "http://api.sharedcount.com/?url=http://prezi.com/") (str "Hi " from-user ", you sent me '" body "'"))))
 
 

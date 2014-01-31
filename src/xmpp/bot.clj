@@ -14,13 +14,13 @@
 (def chat-message-type-filter (MessageTypeFilter. Message$Type/chat))
 
 (defn packet-listener [conn processor]
-  (proxy 
-      [PacketListener] 
+  (proxy
+      [PacketListener]
       []
     (processPacket [packet] (processor conn packet))))
 
 (defn error->map [e]
-  (if (nil? e) 
+  (if (nil? e)
     nil
     {:code (.getCode e) :message (.getMessage e)}))
 
@@ -72,9 +72,9 @@
 
 (defn start
   "Defines and starts an instant messaging bot that will respond to incoming
-   messages. `start` takes 2 parameters, the first is a map representing 
+   messages. `start` takes 2 parameters, the first is a map representing
    the data needed to make a connection to the jabber server:
-   
+
    connnect-info example:
    {:host \"talk.google.com\"
     :domain \"gmail.com\"
@@ -117,6 +117,10 @@
                                 " / "
                                 (apply str (take (count pw) (repeat "*"))))))))
     (.sendPacket conn available-presence)
+    (let [muc (new MultiUserChat conn "12694_jarvistest@conf.hipchat.com")]
+      (.join muc "Jarvis the bot")
+      (.addMessageListener muc (packet-listener conn (with-message-map (wrap-responder packet-processor))))
+    )
     (.addPacketListener
      conn
      (packet-listener conn (with-message-map (wrap-responder packet-processor)))
