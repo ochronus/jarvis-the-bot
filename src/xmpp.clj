@@ -11,9 +11,9 @@
                     (apply hash-map opts))
         name (:name opts)]
     (swap!
-     bots
-     (fn [bots]
-       (bot/stop (get bots name))
-       (assoc bots name (bot/start opts (get opts :handler (fn [m]))))))))
+      bots
+      (fn [bots]
+        (bot/stop (get bots name))
+        (assoc bots name (bot/start opts (get opts :handler (fn [m]))))))))
 
 (def restart-bot start-bot)
