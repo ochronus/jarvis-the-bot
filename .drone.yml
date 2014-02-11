@@ -1,0 +1,10 @@
+image: bradrydzewski/lein 
+env:
+  - GOPATH=/var/cache/drone
+script:
+  - lein test
+services:
+notify:
+  email:
+    recipients:
+      - ochronus@ochronus.com
