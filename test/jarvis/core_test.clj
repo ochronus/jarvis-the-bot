@@ -5,3 +5,7 @@
 (deftest a-test
   (testing "FIXME, I fail."
     (is (= 0 0))))
+
+(deftest b-test
+  (testing "Equality"
+    (is (= 0 0))))
