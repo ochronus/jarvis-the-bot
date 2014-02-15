@@ -11,7 +11,7 @@
   (let [body (:body message)
         from-user (:from-name message)]
     (println "ffff")
-    (if (clojure.string/blank? body) (fetch-url "http://api.sharedcount.com/?url=http://prezi.com/") (str "Hi " from-user ", you sent me '" body "'"))))
+    (if (clojure.string/blank? body) (fetch-url "http://api.sharedcount.com/?url=http://ochronus.com/") (str "Hi " from-user ", you sent me '" body "'"))))
 
 
 
