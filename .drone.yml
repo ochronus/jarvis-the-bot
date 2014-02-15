@@ -3,6 +3,7 @@ env:
   - GOPATH=/var/cache/drone
 script:
   - lein test
+  - phantomjs -v
 services:
 notify:
   email:
